@@ -34,7 +34,18 @@ llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash') #gemini
 
 chain = LLMChain(prompt=prompt, llm=llm)
 
-
+def english_to_bangla(english_sentence):
+    messages = [
+    {
+        "role": "user",
+        "content": f"Translate the following english to Bengali(Just bangla part): {english_sentence}"
+    }
+    ]
+    
+    response = llm.invoke(messages)
+    message = response.content
+    
+    return message
 
 st.title("Medical Assistant Chatbot")
 
@@ -48,3 +59,9 @@ if st.button("Submit"):
     }
     response = chain.run(input_data)
     st.write(response)
+
+#Translation
+
+if st.button('Translate'):
+    english_to_bangla(response)
+
