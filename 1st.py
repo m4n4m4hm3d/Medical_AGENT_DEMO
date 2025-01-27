@@ -62,6 +62,7 @@ if st.button("Submit"):
 
 #Translation
 if st.button('Translate'):
-    bangla = english_to_bangla(response)
-    st.write(bangla)
+    if response:
+        bangla = english_to_bangla(response)
+        st.write(bangla)
 
