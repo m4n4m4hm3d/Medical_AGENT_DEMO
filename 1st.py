@@ -52,19 +52,24 @@ st.title("Medical Assistant Chatbot")
 input_symptoms = st.text_input("Enter the symptoms")
 input_medical_history = st.text_input("Enter the medical history")
 
+if "response" not in st.session_state:
+    st.session_state.response = None
+
+# Generate response on "Submit"
 if st.button("Submit"):
     input_data = {
         "symptoms": input_symptoms,
         "medical_history": input_medical_history
     }
-    response1 = chain.run(input_data)
+    st.session_state.response = chain.run(input_data)  # Save response in session state
     st.write("Generated Response:")
-    st.write(response1)
+    st.write(st.session_state.response)
 
-# Translation
-if response1:
-    
-    if st.button("Translate"):
-        bangla = english_to_bangla(response1)
+# Translate response on "Translate"
+if st.button("Translate"):
+    if st.session_state.response:  # Use session state response
+        bangla = english_to_bangla(st.session_state.response)
         st.write("Translated to Bengali:")
         st.write(bangla)
+    else:
+        st.warning("Please submit the symptoms and medical history first!")
