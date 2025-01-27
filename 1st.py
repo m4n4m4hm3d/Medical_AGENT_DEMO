@@ -30,7 +30,7 @@ os.environ['GOOGLE_API_KEY'] = google_api_key
 prompt = PromptTemplate(template=template, input_variables=["symptoms", "medical_history"])
 
 llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash') #gemini
-memory = ConversationBufferWindowMemory(k=10)
+
 
 chain = LLMChain(prompt=prompt, llm=llm)
 
