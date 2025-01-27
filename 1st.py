@@ -63,9 +63,6 @@ if st.button("Submit"):
 
 # Translation
 if st.button("Translate"):
-    if response1:
-        bangla = english_to_bangla(response1)
-        st.write("Translated to Bengali:")
-        st.write(bangla)
-    else:
-        st.warning("Please submit the symptoms and medical history first!")
+    bangla = english_to_bangla(response1)
+    st.write("Translated to Bengali:")
+    st.write(bangla)
