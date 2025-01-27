@@ -58,11 +58,14 @@ if st.button("Submit"):
         "medical_history": input_medical_history
     }
     response = chain.run(input_data)
+    st.write("Generated Response:")
     st.write(response)
 
-#Translation
-if st.button('Translate'):
+# Translation
+if st.button("Translate"):
     if response:
         bangla = english_to_bangla(response)
+        st.write("Translated to Bengali:")
         st.write(bangla)
-
+    else:
+        st.warning("Please submit the symptoms and medical history first!")
