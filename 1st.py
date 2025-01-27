@@ -23,9 +23,11 @@ Suggested Actions:
 3. 
 """
 
-load_dotenv()
+google_api_key = os.getenv('GOOGLE_API_KEY')
+if google_api_key is None:
+    raise ValueError("GOOGLE_API_KEY environment variable not set. Please check your .env file.")
+os.environ['GOOGLE_API_KEY'] = google_api_key
 
-os.environ['GOOGLE_API_KEY'] = os.getenv('GOOGLE_API_KEY')
 prompt = PromptTemplate(template=template, input_variables=["symptoms", "medical_history"])
 
 llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash') #gemini
